@@ -99,7 +99,7 @@ function handleRegister(e) {
         window.location.href = '/binaries/login.cgi?success=Регистрация прошла успешно';
     })
     .catch(error => {
-        showFormError(form, error.message || 'Ошибка регистрации');
+        showFormError(form, error.error || error.message || 'Ошибка регистрации');
     });
 }
 
