@@ -12,3 +12,22 @@ func ErrorResponse(w http.ResponseWriter, err error) {
 		"error": err.Error(),
 	})
 }
+
+func SetCookie(w http.ResponseWriter, key string, value string) {
+	cookie := http.Cookie{
+		Name:     key,
+		Value:    value,
+	}
+
+	http.SetCookie(w, &cookie)
+}
+
+func GetCookie(r *http.Request, key string) (string, error) {
+	cookie, err := r.Cookie(key)
+
+	if err != nil {
+		return "", err
+	}
+
+	return cookie.Value, nil
+}

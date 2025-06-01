@@ -18,6 +18,7 @@ type (
 	}
 
 	Response struct {
+		Title string `json:"title,omitempty"`
 		Token string `json:"token"`
 	}
 )
@@ -45,8 +46,6 @@ func grantAccessToken(username string) (string, error) {
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
 	if r.Method == http.MethodGet {
 		tmpl, err := template.ParseFiles("../templates/auth/login.html", "../templates/base.html")
 
@@ -55,13 +54,17 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		tmpl.ExecuteTemplate(w, "login.html", nil)
+		tmpl.ExecuteTemplate(w, "login.html", Response{
+			Title: "Вход",
+		})
 	}
 
 	if r.Method == http.MethodPost {
-		form := Form{}
+		w.Header().Set("Content-Type", "application/json")
 
-		err := json.Unmarshal([]byte(r.Header.Get("Body")), &form)
+		form := Form{}
+		
+		err := json.NewDecoder(r.Body).Decode(&form)
 
 		if err != nil {
 			shared.ErrorResponse(w, err)
@@ -79,6 +82,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			shared.ErrorResponse(w, err)
 			return
 		}
+
+		shared.SetCookie(w, "username", form.Username)
 
 		json.NewEncoder(w).Encode(Response{
 			Token: token,
