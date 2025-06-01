@@ -39,6 +39,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	response := Response{
 		Title: "Главная",
+		User: User{},
 	}
 	
 	username, err := shared.GetCookie(r, "username")
