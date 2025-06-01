@@ -5,6 +5,13 @@ import (
 	"net/http"
 )
 
+type User struct {
+	ID string
+	FullName string
+	Email string
+	Bio string
+}
+
 func ErrorResponse(w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusBadRequest)
 

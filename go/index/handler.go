@@ -9,19 +9,14 @@ import (
 type (
 	Response struct {
 		Title string
-		User User
+		User *User
 	}
 
-	User struct {
-		ID string
-		FullName string
-		Email string
-		Bio string
-	}
+	User = shared.User
 )
 
-func getUser(username string) User {
-	return User{
+func getUser(username string) *User {
+	return &User{
 		ID: "1", 
 		FullName: "Атабаев Олег Константинович", 
 		Email: "atabaev.o.k.04@gmail.com", 
@@ -39,7 +34,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	response := Response{
 		Title: "Главная",
-		User: User{},
+		User: nil,
 	}
 	
 	username, err := shared.GetCookie(r, "username")
@@ -48,7 +43,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "home.html", response)
 		return
 	}
-
+	
 	response.User = getUser(username)
 
 	tmpl.ExecuteTemplate(w, "home.html", response)

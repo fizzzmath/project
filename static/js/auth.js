@@ -82,7 +82,11 @@ function handleRegister(e) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            username: data.username,
+            email: data.email,
+            password: data.password
+        })
     })
     .then(response => {
         if (!response.ok) {

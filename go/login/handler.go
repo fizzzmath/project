@@ -20,7 +20,10 @@ type (
 	Response struct {
 		Title string `json:"title,omitempty"`
 		Token string `json:"token"`
+		User *User `json:"user,omitempty"`
 	}
+
+	User = shared.User
 )
 
 func invalid(form Form) bool {
@@ -85,8 +88,12 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 		shared.SetCookie(w, "username", form.Username)
 
-		json.NewEncoder(w).Encode(Response{
+		err = json.NewEncoder(w).Encode(Response{
 			Token: token,
 		})
+
+		if err != nil {
+			shared.ErrorResponse(w, err)
+		}
 	}
 }
