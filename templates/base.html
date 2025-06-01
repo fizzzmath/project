@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    {{block "styles" .}}{{end}}
+</head>
+<body class="page">
+    <header class="header">
+        <div class="container header__container">
+            <a href="/cgi-bin/index.cgi" class="header__logo">СоцСеть</a>
+            <nav class="header__nav">
+                {{if .User}}
+                    <a href="/cgi-bin/index.cgi" class="header__link">Главная</a>
+                    <a href="/cgi-bin/profile.cgi" class="header__link">Профиль</a>
+                    <a href="/cgi-bin/logout.cgi" class="header__link">Выйти</a>
+                {{else}}
+                    <a href="/cgi-bin/index.cgi" class="header__link">Главная</a>
+                    <a href="/cgi-bin/login.cgi" class="header__link">Войти</a>
+                    <a href="/cgi-bin/register.cgi" class="header__link">Регистрация</a>
+                {{end}}
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        {{block "content" .}}{{end}}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer__copyright">© 2025 Социальная сеть. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    {{block "scripts" .}}{{end}}
+</body>
+</html>

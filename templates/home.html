@@ -1,0 +1,57 @@
+{{template "base.html" .}}
+
+{{define "styles"}}
+    <link rel="stylesheet" href="/static/css/home.css">
+{{end}}
+
+{{define "content"}}
+<section class="welcome-section">
+    <div class="container">
+        <h1 class="welcome__title">Добро пожаловать в СоцСеть!</h1>
+        <p class="welcome__subtitle">Общайтесь, делитесь новостями и находите новых друзей в нашей социальной сети</p>
+        
+        {{if .User}}
+            <a href="/cgi-bin/profile.cgi" class="btn">Перейти в профиль</a>
+        {{else}}
+            <div class="auth-actions">
+                <a href="/cgi-bin/login.cgi" class="btn">Войти</a>
+                <a href="/cgi-bin/register.cgi" class="btn btn--secondary">Зарегистрироваться</a>
+            </div>
+        {{end}}
+    </div>
+</section>
+
+{{if not .User}}
+<section class="features">
+    <div class="container">
+        <h2 class="features__title">Почему стоит выбрать нас?</h2>
+        
+        <div class="grid grid--col-2">
+            <div class="feature-card">
+                <div class="feature-card__icon">👥</div>
+                <h3 class="feature-card__title">Общение</h3>
+                <p>Общайтесь с друзьями и знакомыми в удобном формате</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-card__icon">🔒</div>
+                <h3 class="feature-card__title">Безопасность</h3>
+                <p>Ваши данные защищены с использованием современных технологий</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-card__icon">🎨</div>
+                <h3 class="feature-card__title">Дизайн</h3>
+                <p>Минималистичный и приятный интерфейс без лишних элементов</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-card__icon">🚀</div>
+                <h3 class="feature-card__title">Скорость</h3>
+                <p>Быстрая работа благодаря оптимизированной архитектуре</p>
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}
+{{end}}

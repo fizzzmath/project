@@ -1,0 +1,51 @@
+{{template "base.html" .}}
+
+{{define "styles"}}
+    <link rel="stylesheet" href="/static/css/profile.css">
+{{end}}
+
+{{define "content"}}
+<div class="container">
+    <div class="card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                {{.User.Initials}}
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-info__name">{{.User.FullName}}</h1>
+                <p class="profile-info__username">@{{.User.Username}}</p>
+                
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <div class="profile-stat__value">142</div>
+                        <div class="profile-stat__label">Друзей</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat__value">56</div>
+                        <div class="profile-stat__label">Публикаций</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat__value">24</div>
+                        <div class="profile-stat__label">Комментариев</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-bio">
+            <h2 class="card__subtitle">О себе</h2>
+            <p>{{.User.Bio}}</p>
+        </div>
+        
+        <div class="profile-actions">
+            <a href="/cgi-bin/profile.cgi?action=edit" class="btn">Редактировать профиль</a>
+            <button class="btn btn--secondary">Добавить в друзья</button>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card__title">Последняя активность</h2>
+        <p>Здесь будет отображаться активность пользователя...</p>
+    </div>
+</div>
+{{end}}

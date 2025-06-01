@@ -1,0 +1,24 @@
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.auth-form {
+    padding: 1rem 0;
+}
+
+.auth__footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.auth__link {
+    color: var(--accent-pastel);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth__link:hover {
+    text-decoration: underline;
+}

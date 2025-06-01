@@ -1,0 +1,251 @@
+/* Основные переменные */
+:root {
+    --primary-pastel: #a8d8ea;
+    --secondary-pastel: #f5e6ca;
+    --accent-pastel: #aa96da;
+    --text-soft: #555;
+    --text-light: #888;
+    --background-light: #f9f9f9;
+    --card-bg: #fff;
+    --border-soft: #e0e0e0;
+}
+
+/* Глобальные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-soft);
+    background-color: var(--background-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Блоки по БЭМ */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.card__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-pastel);
+    font-weight: 600;
+}
+
+.card__subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-soft);
+    font-style: italic;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent-pastel);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: #9681c1;
+}
+
+.btn--secondary {
+    background-color: var(--secondary-pastel);
+    color: var(--text-soft);
+}
+
+.btn--secondary:hover {
+    background-color: #e0d4b1;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-soft);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--background-light);
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-pastel);
+}
+
+.textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.success-message {
+    color: #2ecc71;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+/* Хедер */
+.header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-pastel);
+    text-decoration: none;
+    font-style: italic;
+}
+
+.header__nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header__link {
+    text-decoration: none;
+    color: var(--text-soft);
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.header__link:hover {
+    color: var(--accent-pastel);
+}
+
+.header__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-pastel);
+}
+
+/* Основной контент */
+.main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+/* Футер */
+.footer {
+    background-color: var(--card-bg);
+    padding: 1.5rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer__copyright {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Утилиты */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+/* Сетка */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid--col-2 {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .grid--col-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Анимации (по минимуму) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}

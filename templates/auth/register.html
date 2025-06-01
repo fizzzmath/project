@@ -1,0 +1,49 @@
+{{template "base.html" .}}
+
+{{define "styles"}}
+    <link rel="stylesheet" href="/static/css/auth.css">
+{{end}}
+
+{{define "content"}}
+<div class="container">
+    <div class="auth-container">
+        <div class="card">
+            <h1 class="card__title">Регистрация</h1>
+            
+            <form id="registerForm" action="/cgi-bin/register.cgi" method="POST" class="auth-form">
+                <div class="form-group">
+                    <label for="reg-username" class="form-label">Логин</label>
+                    <input type="text" id="reg-username" name="username" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password" class="form-label">Пароль</label>
+                    <input type="password" id="reg-password" name="password" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password" class="form-label">Подтвердите пароль</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" class="form-input" required>
+                </div>
+                
+                <div class="error-message"></div>
+                
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </form>
+            
+            <p class="auth__footer">
+                Уже есть аккаунт? <a href="/cgi-bin/login.cgi" class="auth__link">Войти</a>
+            </p>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+    <script src="/static/js/auth.js"></script>
+{{end}}
