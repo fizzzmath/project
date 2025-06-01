@@ -23,7 +23,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.ExecuteTemplate(w, "base", Response{
+	tmpl.ExecuteTemplate(w, "view.html", Response{
 		Title: "Профиль",
 	})
 }

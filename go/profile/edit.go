@@ -14,7 +14,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.ExecuteTemplate(w, "base", Response{
+	tmpl.ExecuteTemplate(w, "edit.html", Response{
 		Title: "Редактирование профиля",
 	})
 }
