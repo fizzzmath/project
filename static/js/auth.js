@@ -30,7 +30,7 @@ function handleLogin(e) {
         password: formData.get('password')
     };
     
-    fetch('/cgi-bin/login.cgi', {
+    fetch('/cgi/login.cgi', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ function handleLogin(e) {
         localStorage.setItem('token', data.token);
         
         // Перенаправляем на главную
-        window.location.href = '/cgi-bin/index.cgi';
+        window.location.href = '/cgi/index.cgi';
     })
     .catch(error => {
         showFormError(form, error.message || 'Ошибка входа');
@@ -77,7 +77,7 @@ function handleRegister(e) {
         return;
     }
     
-    fetch('/cgi-bin/register.cgi', {
+    fetch('/cgi/register.cgi', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

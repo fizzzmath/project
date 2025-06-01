@@ -32,7 +32,7 @@ function handleProfileUpdate(e) {
     
     const userId = form.dataset.userId;
     
-    fetch(`/cgi-bin/profile_edit.cgi?user_id=${userId}`, {
+    fetch(`/cgi/profile_edit.cgi?user_id=${userId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
