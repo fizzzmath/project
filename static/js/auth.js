@@ -96,7 +96,7 @@ function handleRegister(e) {
     })
     .then(data => {
         // Перенаправляем на страницу входа
-        window.location.href = '/templates/login.cgi?success=Регистрация прошла успешно';
+        window.location.href = '/binaries/login.cgi?success=Регистрация прошла успешно';
     })
     .catch(error => {
         showFormError(form, error.message || 'Ошибка регистрации');
