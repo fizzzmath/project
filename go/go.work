@@ -4,4 +4,5 @@ use (
     ./index
     ./login
     ./register
+    ./shared
 )
