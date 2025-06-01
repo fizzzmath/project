@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
 	"log"
@@ -24,6 +25,10 @@ type (
 	}
 )
 
+func validate(form Form) error {
+	return errors.New("пользователь с таким email (логином) уже существует")
+}
+
 func addUser(form Form) {
 	// ...
 }
@@ -33,6 +38,13 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		form := Form{}
 
 		err := json.NewDecoder(r.Body).Decode(&form)
+
+		if err != nil {
+			shared.ErrorResponse(w, err)
+			return
+		}
+
+		err = validate(form)
 
 		if err != nil {
 			shared.ErrorResponse(w, err)

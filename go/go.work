@@ -1,8 +1,9 @@
 go 1.24.1
 
 use (
-    ./index
-    ./login
-    ./register
-    ./shared
+	./index
+	./login
+	./profile
+	./register
+	./shared
 )
