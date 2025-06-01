@@ -10,7 +10,7 @@ import (
 
 func main() {
 	cgi.Serve(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		tmpl, err := template.ParseFiles("../templates/base.html", "../template/home.html")
+		tmpl, err := template.ParseFiles("/templates/base.html", "/template/home.html")
 
 		if err != nil {
 			fmt.Fprintf(w, "Template error")
