@@ -127,14 +127,14 @@ body {
     color: #e74c3c;
     font-size: 0.9rem;
     margin-top: 0.5rem;
-    display: none;
+    /* display: none; */
 }
 
 .success-message {
     color: #2ecc71;
     font-size: 0.9rem;
     margin-top: 0.5rem;
-    display: none;
+    /* display: none; */
 }
 
 .global-message {
