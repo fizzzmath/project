@@ -11,16 +11,16 @@
 <body class="page">
     <header class="header">
         <div class="container header__container">
-            <a href="/cgi/index.cgi" class="header__logo">СоцСеть</a>
+            <a href="/binaries/index.cgi" class="header__logo">СоцСеть</a>
             <nav class="header__nav">
                 {{if .User}}
-                    <a href="/cgi/index.cgi" class="header__link">Главная</a>
-                    <a href="/cgi/profile.cgi" class="header__link">Профиль</a>
-                    <a href="/cgi/logout.cgi" class="header__link">Выйти</a>
+                    <a href="/binaries/index.cgi" class="header__link">Главная</a>
+                    <a href="/binaries/profile.cgi" class="header__link">Профиль</a>
+                    <a href="/binaries/logout.cgi" class="header__link">Выйти</a>
                 {{else}}
-                    <a href="/cgi/index.cgi" class="header__link">Главная</a>
-                    <a href="/cgi/login.cgi" class="header__link">Войти</a>
-                    <a href="/cgi/register.cgi" class="header__link">Регистрация</a>
+                    <a href="/binaries/index.cgi" class="header__link">Главная</a>
+                    <a href="/binaries/login.cgi" class="header__link">Войти</a>
+                    <a href="/binaries/register.cgi" class="header__link">Регистрация</a>
                 {{end}}
             </nav>
         </div>

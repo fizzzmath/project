@@ -11,11 +11,11 @@
         <p class="welcome__subtitle">Общайтесь, делитесь новостями и находите новых друзей в нашей социальной сети</p>
         
         {{if .User}}
-            <a href="/cgi/profile.cgi" class="btn">Перейти в профиль</a>
+            <a href="/binaries/profile.cgi" class="btn">Перейти в профиль</a>
         {{else}}
             <div class="auth-actions">
-                <a href="/cgi/login.cgi" class="btn">Войти</a>
-                <a href="/cgi/register.cgi" class="btn btn--secondary">Зарегистрироваться</a>
+                <a href="/binaries/login.cgi" class="btn">Войти</a>
+                <a href="/binaries/register.cgi" class="btn btn--secondary">Зарегистрироваться</a>
             </div>
         {{end}}
     </div>

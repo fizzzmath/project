@@ -61,7 +61,7 @@ function isAuthenticated() {
  */
 function requireAuth() {
     if (!isAuthenticated()) {
-        window.location.href = '/cgi/login.cgi?error=Требуется авторизация';
+        window.location.href = '/binaries/login.cgi?error=Требуется авторизация';
     }
 }
 
@@ -70,5 +70,5 @@ function requireAuth() {
  */
 function logout() {
     localStorage.removeItem('token');
-    window.location.href = '/cgi/index.cgi';
+    window.location.href = '/binaries/index.cgi';
 }
