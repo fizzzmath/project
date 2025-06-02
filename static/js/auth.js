@@ -51,7 +51,7 @@ function handleLogin(e) {
         window.location.href = '/binaries/index.cgi';
     })
     .catch(error => {
-        showFormError(form, error.message || 'Ошибка входа');
+        showFormError(form, error.error || error.message || 'Ошибка входа');
     });
 }
 
