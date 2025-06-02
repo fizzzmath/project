@@ -9,7 +9,7 @@
     <div class="card">
         <h1 class="card__title">Редактирование профиля</h1>
         
-        <form id="profileForm" action="/binaries/profile.cgi?user_id={{.User.ID}}&action=edit" method="POST" class="profile-form">
+        <form id="profileForm" data-user-id="{{.User.ID}}" action="/binaries/profile.cgi" method="POST" class="profile-form">
             <div class="form-group">
                 <label for="fullName" class="form-label">Полное имя</label>
                 <input type="text" id="fullName" name="fullName" class="form-input" value="{{.User.FullName}}" required>
