@@ -40,18 +40,18 @@ function handleProfileUpdate(e) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw err; });
-        }
-        return response.json();
-    })
-    .then(data => {
-        showFormSuccess(form, 'Профиль успешно обновлен');
-    })
-    .catch(error => {
-        showFormError(form, error.error || error.message || 'Ошибка обновления профиля');
-    });
+    // .then(response => {
+    //     if (!response.ok) {
+    //         return response.json().then(err => { throw err; });
+    //     }
+    //     return response.json();
+    // })
+    // .then(data => {
+    //     showFormSuccess(form, 'Профиль успешно обновлен');
+    // })
+    // .catch(error => {
+    //     showFormError(form, error.error || error.message || 'Ошибка обновления профиля');
+    // });
 }
 
 /**
