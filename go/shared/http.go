@@ -7,11 +7,11 @@ import (
 
 type User struct {
 	ID *int
-	Username string
 	FullName *string
-	Initials *string
 	Email string
 	Bio *string
+	Username string
+	Initials *string
 }
 
 func ErrorResponse(w http.ResponseWriter, err error) {

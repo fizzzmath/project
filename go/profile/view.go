@@ -37,14 +37,14 @@ func getUser(username string) (*User, error) {
 		return nil, err
 	}
 
-	for sel.Next() {
+	if sel.Next() {
 		err = sel.Scan(
 			&user.ID, 
-			&user.Username, 
 			&user.FullName, 
-			&user.Initials, 
 			&user.Email, 
 			&user.Bio,
+			&user.Username, 
+			&user.Initials, 
 		)
 
 		if err != nil {
