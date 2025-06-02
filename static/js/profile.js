@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Обработчик формы редактирования профиля
-    // const profileForm = document.getElementById('profileForm');
-    // if (profileForm) {
-    //     profileForm.addEventListener('submit', handleProfileUpdate);
-    // }
+    const profileForm = document.getElementById('profileForm');
+    if (profileForm) {
+        profileForm.addEventListener('submit', handleProfileUpdate);
+    }
 });
 
 /**
@@ -25,9 +25,9 @@ function handleProfileUpdate(e) {
     const form = e.target;
     const formData = new FormData(form);
     const data = {
-        // fullName: formData.get('fullName'),
+        fullName: formData.get('fullName'),
         email: formData.get('email'),
-        // bio: formData.get('bio')
+        bio: formData.get('bio')
     };
     
     const userId = form.dataset.userId;
