@@ -25,5 +25,13 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl.ExecuteTemplate(w, "view.html", Response{
 		Title: "Профиль",
+		User: &User{
+			ID: "1",
+			Username: "Olegarhchik",
+			FullName: "Атабаев Олег",
+			Initials: "АО",
+			Email: "atabaev.o.k.04@gmail.com",
+			Bio: "Будущий backend-разработчик",
+		},
 	})
 }

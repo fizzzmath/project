@@ -16,5 +16,13 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl.ExecuteTemplate(w, "edit.html", Response{
 		Title: "Редактирование профиля",
+		User: &User{
+			ID: "1",
+			Username: "Olegarhchik",
+			FullName: "Атабаев Олег",
+			Initials: "АО",
+			Email: "atabaev.o.k.04@gmail.com",
+			Bio: "Будущий backend-разработчик",
+		},
 	})
 }
