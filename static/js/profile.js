@@ -25,9 +25,9 @@ function handleProfileUpdate(e) {
     const form = e.target;
     const formData = new FormData(form);
     const data = {
-        fullName: formData.get('fullName'),
+        // fullName: formData.get('fullName'),
         email: formData.get('email'),
-        bio: formData.get('bio')
+        // bio: formData.get('bio')
     };
     
     const userId = form.dataset.userId;
@@ -38,11 +38,7 @@ function handleProfileUpdate(e) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify({
-            fullName: encodeURI(data.fullName),
-            email: data.email,
-            bio: encodeURI(data.bio)
-        })
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (!response.ok) {
