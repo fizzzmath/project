@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"shared"
 	"strings"
@@ -28,16 +27,14 @@ func unauthorized(token string) bool {
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		w.Header().Set("Content-Type", "text/plain")
-		// id := r.URL.Query().Get("user_id")
+		id := r.URL.Query().Get("user_id")
 		token := strings.Split(r.Header.Get("Authorization"), " ")[1]
 		form := Form{}
 
 		err := json.NewDecoder(r.Body).Decode(&form)
 
 		if err != nil {
-			fmt.Fprintf(w, "%v", err)
-			// shared.ErrorResponse(w, err)
+			shared.ErrorResponse(w, err)
 			return
 		}
 
@@ -46,12 +43,9 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// update(id, form)
+		update(id, form)
 
-		fmt.Fprintf(w, "Успешно")
-		return
-
-		// shared.SuccessResponse(w)
+		shared.SuccessResponse(w)
 	}
 
 	if r.Method == http.MethodGet {
