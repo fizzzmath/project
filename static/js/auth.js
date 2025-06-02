@@ -77,7 +77,7 @@ function handleRegister(e) {
         return;
     }
 
-    if (toString(data.password).length() < 8) {
+    if (data.password.length < 8) {
         showFormError(form, 'Пароль слишком короткий');
         return;
     }
