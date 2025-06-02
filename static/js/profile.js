@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Обработчик формы редактирования профиля
-    const profileForm = document.getElementById('profileForm');
-    if (profileForm) {
-        profileForm.addEventListener('submit', handleProfileUpdate);
-    }
+    // const profileForm = document.getElementById('profileForm');
+    // if (profileForm) {
+    //     profileForm.addEventListener('submit', handleProfileUpdate);
+    // }
 });
 
 /**
