@@ -27,7 +27,7 @@ func unauthorized(token string) bool {
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		id := r.URL.Query().Get("user_id")
+		// id := r.URL.Query().Get("user_id")
 		token := strings.Split(r.Header.Get("Authorization"), " ")[1]
 		form := Form{}
 
@@ -43,7 +43,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		update(id, form)
+		// update(id, form)
 
 		shared.SuccessResponse(w)
 	}
