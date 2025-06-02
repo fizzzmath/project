@@ -70,5 +70,4 @@ function requireAuth() {
  */
 function logout() {
     localStorage.removeItem('token');
-    window.location.href = '/binaries/index.cgi';
 }
