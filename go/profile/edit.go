@@ -16,7 +16,7 @@ type (
 	}
 )
 
-func update(id string, form Form) {
+func update(form Form) {
 	// ...
 }
 
@@ -26,7 +26,6 @@ func unauthorized(token string) bool {
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		id := r.URL.Query().Get("user_id")
 		token := r.Header.Get("X-Auth-Token")
 		form := Form{}
 
@@ -42,7 +41,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		update(id, form)
+		update(form)
 
 		shared.SuccessResponse(w)
 	}
@@ -55,9 +54,23 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		username, err := shared.GetCookie(r, "username")
+
+		if err != nil {
+			shared.ErrorResponse(w, err)
+			return
+		}
+
+		user, err := getUser(username)
+
+		if err != nil {
+			shared.ErrorResponse(w, err)
+			return
+		}
+
 		tmpl.ExecuteTemplate(w, "edit.html", Response{
 			Title: "Редактирование профиля",
-			User: nil,
+			User: user,
 		})
 	}
 }

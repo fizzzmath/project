@@ -30,9 +30,7 @@ function handleProfileUpdate(e) {
         bio: formData.get('bio')
     };
     
-    const userId = form.dataset.userId;
-    
-    fetch(`/binaries/profile.cgi?user_id=${userId}&action=edit`, {
+    fetch(`/binaries/profile.cgi?action=edit`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
