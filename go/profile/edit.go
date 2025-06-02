@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"shared"
 	"text/template"
@@ -26,7 +27,7 @@ func unauthorized(token string) bool {
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		id := r.URL.Query().Get("user_id")
-		// token := strings.Split(r.Header.Get("Authorization"), " ")[1]
+		token := r.Header.Get("Authorization")
 		form := Form{}
 
 		err := json.NewDecoder(r.Body).Decode(&form)
@@ -36,10 +37,10 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// if unauthorized(token) {
-		//  	shared.ErrorResponse(w, errors.New("для выполнения этого действия необходимо авторизоваться"))
-		// 	return
-		// }
+		if unauthorized(token) {
+		 	shared.ErrorResponse(w, errors.New("для выполнения этого действия необходимо авторизоваться"))
+			return
+		}
 
 		update(id, form)
 
