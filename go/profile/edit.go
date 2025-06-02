@@ -21,7 +21,7 @@ func update(id string, form Form) {
 }
 
 func unauthorized(token string) bool {
-	return false
+	return true
 }
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
@@ -29,8 +29,6 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 		id := r.URL.Query().Get("user_id")
 		token := r.Header.Get("X-Auth-Token")
 		form := Form{}
-
-		shared.SetCookie(w, "token", token)
 
 		err := json.NewDecoder(r.Body).Decode(&form)
 
