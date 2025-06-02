@@ -29,6 +29,8 @@ function handleProfileUpdate(e) {
         email: formData.get('email'),
         bio: formData.get('bio')
     };
+
+    console.log(JSON.stringify(data));
     
     const userId = form.dataset.userId;
     
