@@ -26,6 +26,8 @@ func unauthorized(token string) bool {
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization")
+
 		id := r.URL.Query().Get("user_id")
 		token := r.Header.Get("Authorization")
 		form := Form{}
