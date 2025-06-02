@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (profileForm) {
         profileForm.addEventListener('submit', handleProfileUpdate);
     }
+
+    // Очищение пустых полей
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        if (input.value.includes('nil')) {
+            input.value = '';
+        }
+    })
 });
 
 /**
