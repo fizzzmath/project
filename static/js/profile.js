@@ -52,6 +52,7 @@ function handleProfileUpdate(e) {
         showFormSuccess(form, 'Профиль успешно обновлен');
     })
     .catch(error => {
+        console.log(error.error || error.message);
         showFormError(form, error.error || error.message || 'Ошибка обновления профиля');
     });
 }
