@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"html/template"
 	"log"
@@ -26,7 +25,8 @@ type (
 )
 
 func validate(form Form) error {
-	return errors.New("пользователь с таким email (логином) уже существует")
+	// return errors.New("пользователь с таким email (логином) уже существует")
+	return nil
 }
 
 func addUser(form Form) {
@@ -53,11 +53,7 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 
 		addUser(form)
 
-		err = json.NewEncoder(w).Encode(`"status": "success"`)
-
-		if err != nil {
-			shared.ErrorResponse(w, err)
-		}
+		shared.SuccessResponse(w)
 	}
 
 	if r.Method == http.MethodGet {

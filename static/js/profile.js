@@ -41,10 +41,12 @@ function handleProfileUpdate(e) {
         body: JSON.stringify(data)
     })
     .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw err; });
-        }
-        return response.json();
+        // if (!response.ok) {
+        //     return response.json().then(err => { throw err; });
+        // }
+        // return response.json();
+        console.log(response);
+        return response;
     })
     .then(data => {
         showFormSuccess(form, 'Профиль успешно обновлен');

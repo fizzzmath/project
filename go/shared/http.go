@@ -15,10 +15,20 @@ type User struct {
 }
 
 func ErrorResponse(w http.ResponseWriter, err error) {
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusBadRequest)
 
 	json.NewEncoder(w).Encode(map[string]string{
 		"error": err.Error(),
+	})
+}
+
+func SuccessResponse(w http.ResponseWriter) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"success": true,
 	})
 }
 
@@ -39,4 +49,14 @@ func GetCookie(r *http.Request, key string) (string, error) {
 	}
 
 	return cookie.Value, nil
+}
+
+func DeleteCookie(w http.ResponseWriter, key string) {
+	cookie := http.Cookie{
+		Name:   key,
+		Value:  "",
+		MaxAge: -1,
+	}
+
+	http.SetCookie(w, &cookie)
 }

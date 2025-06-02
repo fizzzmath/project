@@ -63,8 +63,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodPost {
-		w.Header().Set("Content-Type", "application/json")
-
 		form := Form{}
 		
 		err := json.NewDecoder(r.Body).Decode(&form)
