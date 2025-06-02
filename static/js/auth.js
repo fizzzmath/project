@@ -76,6 +76,11 @@ function handleRegister(e) {
         showFormError(form, 'Пароли не совпадают');
         return;
     }
+
+    if (data.password.length() < 8) {
+        showFormError(form, 'Пароль слишком короткий');
+        return;
+    }
     
     fetch('/binaries/register.cgi', {
         method: 'POST',

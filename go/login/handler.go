@@ -1,8 +1,10 @@
 package main
 
 import (
+	"crypto/sha256"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"shared"
 	"text/template"
@@ -27,7 +29,31 @@ type (
 )
 
 func invalid(form Form) bool {
-	return false
+	db, err := shared.Connect()
+
+	if err != nil {
+		return true
+	}
+
+	defer db.Close()
+
+	sel, err := db.Query(`
+		SELECT *
+		FROM Login
+		WHERE Username = ? AND Password = ?
+	`, form.Username, fmt.Sprintf("%x", sha256.Sum256([]byte(form.Password))))
+
+	if err != nil {
+		return true
+	}
+
+	defer sel.Close()
+
+	for sel.Next() {
+		return false
+	}
+
+	return true
 }
 
 func grantAccessToken(username string) (string, error) {
