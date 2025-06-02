@@ -44,14 +44,12 @@ function handleProfileUpdate(e) {
         if (!response.ok) {
             return response.json().then(err => { throw err; });
         }
-        console.log(response);
         return response.json();
     })
     .then(data => {
         showFormSuccess(form, 'Профиль успешно обновлен');
     })
     .catch(error => {
-        console.log(error.error || error.message);
         showFormError(form, error.error || error.message || 'Ошибка обновления профиля');
     });
 }
