@@ -26,7 +26,7 @@ func ErrorResponse(w http.ResponseWriter, err error) {
 func SuccessResponse(w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "application/json")
 
-	json.NewEncoder(w).Encode(map[string]interface{}{
+	json.NewEncoder(w).Encode(map[string]bool{
 		"success": true,
 	})
 }
