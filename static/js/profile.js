@@ -36,7 +36,7 @@ function handleProfileUpdate(e) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': localStorage.getItem('token')
         },
         body: JSON.stringify(data)
     })
