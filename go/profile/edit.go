@@ -21,7 +21,7 @@ func update(id string, form Form) {
 }
 
 func unauthorized(token string) bool {
-	return true
+	return false
 }
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
