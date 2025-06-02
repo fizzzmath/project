@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Очищение пустых полей
     const inputs = document.querySelectorAll('input');
     inputs.forEach(input => {
-        if (input.value.includes('nil')) {
+        if (input.value.includes('<nil>')) {
             input.value = '';
         }
     })
