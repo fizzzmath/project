@@ -35,6 +35,8 @@ func validate(form Form) error {
 		return err
 	}
 
+	defer db.Close();
+
 	sel, err := db.Query(`
 		SELECT *
 		FROM User
@@ -76,6 +78,8 @@ func addUser(form Form) error {
 	if err != nil {
 		return err
 	}
+
+	defer db.Close();
 
 	_, err = db.Exec(`
 		INSERT INTO Login
