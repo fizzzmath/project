@@ -26,10 +26,8 @@ func unauthorized(token string) bool {
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization")
-
 		id := r.URL.Query().Get("user_id")
-		token := r.Header.Get("Authorization")
+		token := r.Header.Get("X-Auth-Token")
 		form := Form{}
 
 		shared.SetCookie(w, "token", token)
