@@ -6,12 +6,12 @@ import (
 )
 
 type User struct {
-	ID string
+	ID *int
 	Username string
-	FullName string
-	Initials string
+	FullName *string
+	Initials *string
 	Email string
-	Bio string
+	Bio *string
 }
 
 func ErrorResponse(w http.ResponseWriter, err error) {
