@@ -31,6 +31,8 @@ function handleProfileUpdate(e) {
     };
     
     const userId = form.dataset.userId;
+
+    console.log(localStorage.getItem('token'));
     
     fetch(`/binaries/profile.cgi?user_id=${userId}&action=edit`, {
         method: 'POST',
