@@ -15,15 +15,6 @@ type (
 	User = shared.User
 )
 
-func getUser(username string) *User {
-	return &User{
-		ID: "1", 
-		FullName: "Атабаев Олег Константинович", 
-		Email: "atabaev.o.k.04@gmail.com", 
-		Bio: "Будущий backend-разработчик",
-	}
-}
-
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("../templates/base.html", "../templates/home.html")
 
@@ -44,7 +35,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	response.User = getUser(username)
+	response.User = &User{
+		Username: username,
+	}
 
 	tmpl.ExecuteTemplate(w, "home.html", response)
 }
