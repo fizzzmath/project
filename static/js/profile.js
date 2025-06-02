@@ -29,8 +29,6 @@ function handleProfileUpdate(e) {
         email: formData.get('email'),
         bio: formData.get('bio')
     };
-
-    console.log(JSON.stringify(data));
     
     const userId = form.dataset.userId;
     
@@ -40,7 +38,11 @@ function handleProfileUpdate(e) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            fullName: encodeURI(data.fullName),
+            email: data.email,
+            bio: encodeURI(data.bio)
+        })
     })
     .then(response => {
         if (!response.ok) {
