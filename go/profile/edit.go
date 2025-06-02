@@ -5,7 +5,6 @@ import (
 	"errors"
 	"net/http"
 	"shared"
-	"strings"
 	"text/template"
 )
 
@@ -28,8 +27,10 @@ func unauthorized(token string) bool {
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		id := r.URL.Query().Get("user_id")
-		token := strings.Split(r.Header.Get("Authorization"), " ")[1]
+		token := r.Header.Get("Authorization")
 		form := Form{}
+
+		shared.SetCookie(w, "token", token)
 
 		err := json.NewDecoder(r.Body).Decode(&form)
 
