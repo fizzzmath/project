@@ -40,22 +40,6 @@ func validate(form Form) error {
 	sel, err := db.Query(`
 		SELECT *
 		FROM User
-		WHERE Email = ?
-	`, form.Email)
-
-	if err != nil {
-		return err
-	}
-
-	defer sel.Close()
-
-	for sel.Next() {
-		return errors.New("пользователь с таким email уже существует")
-	}
-
-	sel, err = db.Query(`
-		SELECT *
-		FROM User
 		WHERE Username = ?
 	`, form.Username)
 
