@@ -15,3 +15,15 @@ func Connect() (*sql.DB, error) {
 
 	return db, nil
 }
+
+func UpdateUser(db *sql.DB, key string, value string, ID int) error {
+	sql, err := db.Query(`
+		UPDATE User
+		SET ? = ?
+		WHERE ID = ?
+	`, key, value, ID)
+
+	defer sql.Close()
+
+	return err
+}

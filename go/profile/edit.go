@@ -18,8 +18,40 @@ type (
 	}
 )
 
-func update(form Form) {
-	// ...
+func update(form Form, user User) error {
+	db, err := shared.Connect()
+
+	if err != nil {
+		return err
+	}
+
+	defer db.Close()
+
+	if form.FullName != *user.FullName {
+		err := shared.UpdateUser(db, "FullName", form.FullName, *user.ID)
+
+		if err != nil {
+			return err
+		}
+	}
+
+	if form.Email != user.Email {
+		err := shared.UpdateUser(db, "Email", form.Email, *user.ID)
+
+		if err != nil {
+        	return err
+		}
+	}
+
+	if form.Bio != *user.Bio {
+		err := shared.UpdateUser(db, "Bio", form.Bio, *user.ID)
+
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func unauthorized(tokenString string, username string) bool {
@@ -67,7 +99,12 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		update(form)
+		err = update(form, *user)
+
+		if err != nil {
+			shared.ErrorResponse(w, err)
+			return
+		}
 
 		shared.SuccessResponse(w)
 	}
