@@ -2,6 +2,7 @@ package shared
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -17,13 +18,17 @@ func Connect() (*sql.DB, error) {
 }
 
 func UpdateUser(db *sql.DB, key string, value string, ID int) error {
-	sql, err := db.Query(`
+	sql, err := db.Query(fmt.Sprintf(`
 		UPDATE User
-		SET ? = ?
+		SET %s = ?
 		WHERE ID = ?
-	`, key, value, ID)
+	`, key), value, ID)
+
+	if err != nil {
+		return err
+	}
 
 	defer sql.Close()
 
-	return err
+	return nil
 }
