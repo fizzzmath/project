@@ -7,6 +7,7 @@ import (
 	"shared"
 	"strings"
 	"text/template"
+	"unicode/utf8"
 
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -20,9 +21,16 @@ type (
 )
 
 func extractInitials(fullName string) string {
-	array := strings.SplitN(fullName, " ", 2)
+	parts := strings.Fields(fullName)
+	
+	if len(parts) < 2 {
+		return ""
+	}
 
-	return string(array[0][0]) + string(array[1][0])
+	firstRune1, _ := utf8.DecodeRuneInString(parts[0])
+	firstRune2, _ := utf8.DecodeRuneInString(parts[1])
+
+	return string(firstRune1) + string(firstRune2)
 }
 
 func update(form Form, user User) error {
