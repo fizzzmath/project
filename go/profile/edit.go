@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/http"
 	"shared"
+	"strings"
 	"text/template"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -18,6 +19,12 @@ type (
 	}
 )
 
+func extractInitials(fullName string) string {
+	array := strings.SplitN(fullName, " ", 2)
+
+	return string(array[0][0]) + string(array[1][0])
+}
+
 func update(form Form, user User) error {
 	db, err := shared.Connect()
 
@@ -29,6 +36,12 @@ func update(form Form, user User) error {
 
 	if user.FullName == nil || form.FullName != *user.FullName {
 		err := shared.UpdateUser(db, "FullName", form.FullName, *user.ID)
+
+		if err != nil {
+			return err
+		}
+
+		err = shared.UpdateUser(db, "Initials", extractInitials(form.FullName), *user.ID)
 
 		if err != nil {
 			return err

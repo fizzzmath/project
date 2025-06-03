@@ -6,8 +6,22 @@ import (
 	"text/template"
 )
 
+type (
+	Response struct {
+		Title string
+		User *User
+	}
+
+	User = shared.User
+)
+
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	shared.DeleteCookie(w, "username")
+
+	response := Response{
+		Title: "Главная",
+		User: nil,
+	}
 
 	tmpl, err := template.ParseFiles("../templates/base.html", "../templates/home.html")
 
@@ -16,5 +30,5 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.ExecuteTemplate(w, "home.html", nil)
+	tmpl.ExecuteTemplate(w, "home.html", response)
 }
