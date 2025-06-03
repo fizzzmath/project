@@ -55,7 +55,14 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if unauthorized(token, username) {
+		user, err := getUser(username)
+
+		if err != nil {
+			shared.ErrorResponse(w, err)
+			return
+		}
+
+		if unauthorized(token, user.Username) {
 		 	shared.ErrorResponse(w, errors.New("для выполнения этого действия необходимо авторизоваться"))
 			return
 		}
