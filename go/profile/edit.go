@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"shared"
 	"text/template"
+
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type (
@@ -20,8 +22,18 @@ func update(form Form) {
 	// ...
 }
 
-func unauthorized(token string) bool {
-	return false
+func unauthorized(tokenString string, username string) bool {
+	token, err := jwt.ParseWithClaims(tokenString, &jwt.RegisteredClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte("access-token-secret-key"), nil
+	})
+
+	if err != nil || !token.Valid {
+		return true
+	}
+
+	payload, _ := token.Claims.(*jwt.RegisteredClaims)
+
+	return payload.Subject != username
 }
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
@@ -36,7 +48,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if unauthorized(token) {
+		if unauthorized(token, "Olezha") {
 		 	shared.ErrorResponse(w, errors.New("для выполнения этого действия необходимо авторизоваться"))
 			return
 		}
