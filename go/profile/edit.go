@@ -27,15 +27,15 @@ func update(form Form, user User) error {
 
 	defer db.Close()
 
-	if form.FullName != *user.FullName {
-		_, err := db.Exec(`
-			UPDATE User
-			SET FullName = ?
-			WHERE ID = ?
-		`, form.FullName, user.ID)
+	// if form.FullName != *user.FullName {
+	// 	_, err := db.Exec(`
+	// 		UPDATE User
+	// 		SET FullName = ?
+	// 		WHERE ID = ?
+	// 	`, form.FullName, user.ID)
 
-		return err
-	}
+	// 	return err
+	// }
 
 	// if form.Email != user.Email {
 	// 	err := shared.UpdateUser(db, "Email", form.Email, *user.ID)
